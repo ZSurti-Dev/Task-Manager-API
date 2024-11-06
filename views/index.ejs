@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <form id="task-form">
+            <input type="text" id="title" placeholder="Task Title" required>
+            <textarea id="description" placeholder="Task Description" required></textarea>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="task-list">
+            <% tasks.forEach(task => { %>
+                <li class="task-item <%= task.completed ? 'completed' : '' %>" data-id="<%= task.id %>">
+                    <div class="task-content">
+                        <h3><%= task.title %></h3>
+                        <p><%= task.description %></p>
+                    </div>
+                    <div class="task-actions">
+                        <button class="toggle-complete" data-completed="<%= task.completed %>">
+                            <%= task.completed ? 'Mark Incomplete' : 'Mark Complete' %>
+                        </button>
+                        <button class="delete-task">Delete</button>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
